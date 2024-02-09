@@ -1,0 +1,20 @@
+name: Check for non-dependabot-enabled repositories
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 1'
+
+permissions:
+  issues: write
+
+jobs:
+  evergreen:
+    name: evergreen
+    runs-on: ubuntu-latest
+
+    steps:
+        uses: github/evergreen@v1
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ORGANIZATION: accrescent
